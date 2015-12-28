@@ -1,0 +1,17 @@
+package com.ticketu;
+
+import android.app.Application;
+
+import com.parse.Parse;
+
+/**
+ * Created by hp-user on 12/28/2015.
+ */
+public class TicketU extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this);    }
+}
