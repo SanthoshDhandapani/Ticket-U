@@ -12,6 +12,12 @@ public class TicketU extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initialize();
+    }
+
+    private void initialize() {
         Parse.enableLocalDatastore(this);
-        Parse.initialize(this);    }
+        Parse.initialize(this);
+    }
+
 }
