@@ -79,7 +79,7 @@ public class DashboardFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard,null);
         recyclerView = (RecyclerView)view.findViewById(R.id.movielist);
-        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -107,6 +107,8 @@ public class DashboardFragment extends BaseFragment {
         moviesListView.add(movies);
         moviesListView.add(movies2);
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(moviesListView);
+
+        recyclerAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(recyclerAdapter);
     }
 
