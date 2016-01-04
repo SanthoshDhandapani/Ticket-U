@@ -1,5 +1,6 @@
 package com.ticketu.ui.activity;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -7,10 +8,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
 import com.ticketu.R;
+import com.ticketu.ui.fragment.BaseFragment;
+import com.ticketu.ui.fragment.DashboardFragment;
 import com.ticketu.ui.fragment.HomeFragment;
 
 public class HomeActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,DashboardFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreateContentView(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class HomeActivity extends BaseActivity
 
         if (id == R.id.dashboard) {
             // Handle the camera action
+            getSupportFragmentManager().beginTransaction().add(R.id.container, new DashboardFragment(), DashboardFragment.class.getName()).commit();
         } else if (id == R.id.mytickets) {
 
         } else if (id == R.id.share) {
@@ -43,5 +47,7 @@ public class HomeActivity extends BaseActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+    }
 }

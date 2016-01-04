@@ -4,12 +4,20 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.ticketu.R;
+import com.ticketu.ui.activity.Movies;
+import com.ticketu.ui.activity.RecyclerAdapter;
+import com.ticketu.ui.presenter.BasePresenter;
+
+import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +27,8 @@ import com.ticketu.R;
  * Use the {@link DashboardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends BaseFragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,6 +38,7 @@ public class DashboardFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private RecyclerView recyclerView;
+    private ArrayList<Movies> moviesListView;
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -67,7 +77,8 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        recyclerView = (RecyclerView)find
+        View view = inflater.inflate(R.layout.fragment_dashboard,null);
+        recyclerView = (RecyclerView)view.findViewById(R.id.movielist);
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }
 
@@ -87,6 +98,31 @@ public class DashboardFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+    @Override
+    public void onViewCreated(View view,Bundle savedInstanceState){
+        moviesListView = new ArrayList<Movies>();
+        Movies movies = new Movies("Naanumrowdytha", R.drawable.naanumrowdytha,2);
+        Movies movies2 = new Movies("thanioruvan", R.drawable.thanioruvan,5);
+        moviesListView.add(movies);
+        moviesListView.add(movies2);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(moviesListView);
+        recyclerView.setAdapter(recyclerAdapter);
+    }
+
+    @Override
+    protected int getFragmentLayout() {
+        return 0;
+    }
+
+    @Override
+    protected void onContentViewCreated(View view, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected BasePresenter getPresenter() {
+        return null;
     }
 
     @Override
