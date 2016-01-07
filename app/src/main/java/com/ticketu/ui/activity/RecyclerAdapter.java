@@ -1,8 +1,13 @@
 package com.ticketu.ui.activity;
 
-import android.media.Image;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,45 +15,77 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ticketu.R;
+import com.ticketu.ui.activity.Movies;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by hemeanand on 04/01/16.
- */
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PersonViewHolder>{
-    List<Movies> movies;
 
-    public RecyclerAdapter(List<Movies> movies){
-        this.movies = movies;
-    }
-    public static class PersonViewHolder extends RecyclerView.ViewHolder {
+/**
+ * Created by sathishsr on 22/10/15.
+ */
+public class RecyclerAdapter
+        extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+
+    private final TypedValue mTypedValue = new TypedValue();
+    private int mBackground;
+    private List<String> mValues;
+    private Context mContext;
+    private ArrayList<Movies> movies=new ArrayList<>();
+    private ArrayList<Movies> moviesListView;
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView movieName;
         TextView movieTicket;
         ImageView movieImage;
+        TextView movieTimings;
+        public final View mView = null;
 
-        PersonViewHolder(View itemView) {
-            super(itemView);
-            movieName = (TextView)itemView.findViewById(R.id.movietitle);
-            movieImage = (ImageView)itemView.findViewById(R.id.movieimage);
-            movieTicket = (TextView)itemView.findViewById(R.id.availabletickets);
+
+        public ViewHolder(View view) {
+            super(view);
+            movieName = (TextView) view.findViewById(R.id.movietitle);
+            movieImage = (ImageView) view.findViewById(R.id.movieimage);
+            movieTicket = (TextView) view.findViewById(R.id.availabletickets);
+            movieTimings = (TextView)view.findViewById(R.id.timings);
+
         }
     }
+
+    public String getValueAt(int position) {
+        return mValues.get(position);
+    }
+
+    public RecyclerAdapter(Context context, ArrayList<Movies> movies) {
+        context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
+        mContext = context;
+        this.movies = movies;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        moviesListView = new ArrayList<Movies>();
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.card_view_entry, null, false);
+
+        ViewHolder viewHolder = new ViewHolder(view);
+        return viewHolder;
+
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        holder.movieName.setText(movies.get(position).movieName);
+        holder.movieTicket.setText("Tickets : "+movies.get(position).movieTicket);
+        holder.movieImage.setImageResource(movies.get(position).movieImage);
+        holder.movieTimings.setText(movies.get(position).movietimings);
+    }
+
     @Override
     public int getItemCount() {
         return movies.size();
     }
-    @Override
-    public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view_entry, viewGroup, false);
-        PersonViewHolder pvh = new PersonViewHolder(v);
-        return pvh;
-    }
-    @Override
-    public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        personViewHolder.movieName.setText(movies.get(i).movieName);
-        personViewHolder.movieTicket.setText(movies.get(i).movieTicket);
-        personViewHolder.movieImage.setImageResource(movies.get(i).movieImage);
-    }
+
+
 }

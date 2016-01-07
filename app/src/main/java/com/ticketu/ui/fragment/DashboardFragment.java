@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,14 +74,6 @@ public class DashboardFragment extends BaseFragment {
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_dashboard,null);
-        recyclerView = (RecyclerView)view.findViewById(R.id.movielist);
-        return view;
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -101,24 +94,29 @@ public class DashboardFragment extends BaseFragment {
     }
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
+
+
+        recyclerView = (RecyclerView)view.findViewById(R.id.movielist);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         moviesListView = new ArrayList<Movies>();
-        Movies movies = new Movies("Naanumrowdytha", R.drawable.naanumrowdytha,2);
-        Movies movies2 = new Movies("thanioruvan", R.drawable.thanioruvan,5);
+        Movies movies = new Movies("NAANUM ROWDY THA", R.drawable.naanumrowdytha,2,"8 PM");
+        Movies movies2 = new Movies("THANI ORUVAN", R.drawable.thanioruvan,5,"5 PM");
         moviesListView.add(movies);
         moviesListView.add(movies2);
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(moviesListView);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(),moviesListView);
 
-        recyclerAdapter.notifyDataSetChanged();
+//        recyclerAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(recyclerAdapter);
     }
 
     @Override
     protected int getFragmentLayout() {
-        return 0;
+        return R.layout.fragment_dashboard;
     }
 
     @Override
     protected void onContentViewCreated(View view, Bundle savedInstanceState) {
+
 
     }
 

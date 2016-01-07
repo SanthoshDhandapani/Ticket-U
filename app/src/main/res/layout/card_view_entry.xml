@@ -2,43 +2,70 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="380dp"
+    android:layout_height="match_parent"
     android:layout_margin="8dp">
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/movieimagetitlelayout">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
             android:id="@+id/movieimage"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
-             />
-
+            />
         <TextView
             android:id="@+id/movietitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/movieimage"
-            android:maxLines="3"
-            android:padding="8dp"
-            android:text="title"
-            android:textColor="#222"
+            android:paddingBottom="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@id/movieimage"
+            android:layout_alignTop="@id/movieimage"
+            android:layout_alignRight="@id/movieimage"
+            android:layout_alignBottom="@id/movieimage"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:textSize="22dp" />
-
+            android:textSize="50dp"
+            />
+        </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/movieimagetitlelayout">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/movietitle"
-            android:maxLines="3"
+            android:id="@+id/timings"
+            android:textSize="50dp"
+            android:padding="10dp"
+            android:layout_alignParentLeft = "true"
+            android:gravity= "left"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:id="@+id/availabletickets"
-            android:padding="8dp"
-            android:text="tickets"
-            android:textColor="#666"
-            android:textSize="14dp" />
-
+            android:padding="10dp"
+            android:textSize="25dp" />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/share"
+                android:padding="10dp"
+                android:src="@android:drawable/ic_menu_share"/>
+        </LinearLayout>
     </RelativeLayout>
 </android.support.v7.widget.CardView>
