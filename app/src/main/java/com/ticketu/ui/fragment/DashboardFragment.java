@@ -99,8 +99,8 @@ public class DashboardFragment extends BaseFragment {
         recyclerView = (RecyclerView)view.findViewById(R.id.movielist);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         moviesListView = new ArrayList<Movies>();
-        Movies movies = new Movies("NAANUM ROWDY THA", R.drawable.naanumrowdytha,2,"8 PM");
-        Movies movies2 = new Movies("THANI ORUVAN", R.drawable.thanioruvan,5,"5 PM");
+        Movies movies = new Movies("NAANUM ROWDY THA", R.drawable.naanumrowdytha,2,"8 PM"," APJ Theatres");
+        Movies movies2 = new Movies("THANI ORUVAN", R.drawable.thanioruvan,5,"5 PM","Sathyam Cinemas");
         moviesListView.add(movies);
         moviesListView.add(movies2);
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(),moviesListView);

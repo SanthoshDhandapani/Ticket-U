@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.ticketu.R;
 import com.ticketu.ui.activity.Movies;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class RecyclerAdapter
         TextView movieTicket;
         ImageView movieImage;
         TextView movieTimings;
+        TextView movieTheatre;
         public final View mView = null;
 
 
@@ -49,6 +52,7 @@ public class RecyclerAdapter
             movieImage = (ImageView) view.findViewById(R.id.movieimage);
             movieTicket = (TextView) view.findViewById(R.id.availabletickets);
             movieTimings = (TextView)view.findViewById(R.id.timings);
+            movieTheatre = (TextView)view.findViewById(R.id.movietheatre);
 
         }
     }
@@ -80,6 +84,7 @@ public class RecyclerAdapter
         holder.movieTicket.setText("Tickets : "+movies.get(position).movieTicket);
         holder.movieImage.setImageResource(movies.get(position).movieImage);
         holder.movieTimings.setText(movies.get(position).movietimings);
+        holder.movieTheatre.setText(movies.get(position).movietheatre);
     }
 
     @Override
