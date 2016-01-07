@@ -46,14 +46,13 @@ public class RecyclerViewCardsAdapter extends RecyclerView.Adapter<RecyclerViewC
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView;
+        public ImageView imageView, samplIcon;
         private Activity mActivity;
 
         public ViewHolder(Activity activity , View itemView) {
             super(itemView);
             mActivity = activity;
             imageView = (ImageView) itemView.findViewById(R.id.material_com_card_view_image);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
