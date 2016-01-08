@@ -8,4 +8,25 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="assets_fonts_folder">fonts/</string>
+
+      <string name="typeface_not_found">Typeface %s not found, or could not be loaded.
+        Showing default typeface.
+    </string>
+
+
+    <string name="regular_text_typeface">open_sans_regular.ttf</string>
+    <string name="small_text_typeface">raleway_light.ttf</string>
+    <string name="large_text_typeface">open_sans_semibold.ttf</string>
+
+    <string-array name="drawer_list_icons">
+        <item>@string/ic_card_giftcard</item>
+        <item>@string/ic_perm_media</item>
+        <item>@string/ic_chat</item>
+        <item>@string/ic_favorite_border</item>
+        <item>@string/ic_tune</item>
+        <item>@string/ic_share</item>
+    </string-array>
+
 </resources>

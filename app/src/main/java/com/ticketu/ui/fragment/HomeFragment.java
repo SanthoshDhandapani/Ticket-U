@@ -1,20 +1,22 @@
 package com.ticketu.ui.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.ticketu.R;
 import com.ticketu.ui.activity.BaseActivity;
-import com.ticketu.ui.adapters.RecyclerViewCardsAdapter;
+import com.ticketu.ui.adapters.SectionsPagerAdapter;
 import com.ticketu.ui.presenter.BasePresenter;
 import com.ticketu.ui.presenter.home.HomePresenterImpl;
+import com.ticketu.ui.utils.PrintFontIconDrawable;
 import com.ticketu.ui.viewmodel.CardViewBean;
 import com.ticketu.ui.viewmodel.HomeViewModel;
 
@@ -65,16 +67,24 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
                         .setAction("Action", null).show();
             }
         });
+        Drawable drawable = PrintFontIconDrawable.getInstance(getActivity()).getDrawableFontIcon(R.string.ic_add, android.R.color.white, R.dimen._30sdp);
+        fab.setImageDrawable(drawable);
     }
 
     @Override
     public void setTicketsList() {
-        RecyclerView mRecyclerView = (RecyclerView)getView().findViewById(R.id.tickets_recycler_view);
+        /*RecyclerView mRecyclerView = (RecyclerView)getView().findViewById(R.id.tickets_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(new RecyclerViewCardsAdapter(getActivity(),createMockList()));
+        mRecyclerView.setAdapter(new RecyclerViewCardsAdapter(getActivity(),createMockList()));*/
+
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
+        TabLayout tabLayout = (TabLayout) getView().findViewById(R.id.tabs);
+        ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     private List<CardViewBean> createMockList() {
