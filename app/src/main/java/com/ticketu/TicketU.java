@@ -26,7 +26,6 @@ public class TicketU extends Application {
         ParseACL defaultACL = new ParseACL();
         ParseACL.setDefaultACL(defaultACL, true);
 
-        PrintConfig.initDefault(getAssets(), "fonts/fontawesome-webfont.ttf");
+        PrintConfig.initDefault(getAssets(), "fonts/material_icons.ttf");
     }
-
 }
