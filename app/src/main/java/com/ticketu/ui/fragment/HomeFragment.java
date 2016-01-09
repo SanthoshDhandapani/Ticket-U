@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.ticketu.R;
+import com.ticketu.model.Ticket;
 import com.ticketu.ui.activity.BaseActivity;
 import com.ticketu.ui.activity.HomeActivity;
 import com.ticketu.ui.adapters.SectionsPagerAdapter;
@@ -18,7 +19,7 @@ import com.ticketu.ui.presenter.BasePresenter;
 import com.ticketu.ui.presenter.home.HomePresenterImpl;
 import com.ticketu.ui.utils.PrintFontIconDrawable;
 import com.ticketu.ui.viewmodel.CardViewBean;
-import com.ticketu.ui.viewmodel.HomeViewModel;
+import com.ticketu.ui.viewmodel.TicketViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import java.util.List;
 /**
  * Created by santhoshd on 30-12-2015.
  */
-public class HomeFragment extends BaseFragment implements HomePresenterImpl.View, HomeViewModel.Listener {
+public class HomeFragment extends BaseFragment implements HomePresenterImpl.View, TicketViewModel.Listener {
 
     HomePresenterImpl  homePresenter;
     private static final String MOCK_URL = "http://lorempixel.com/800/400/nightlife/";
@@ -72,14 +73,7 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
     }
 
     @Override
-    public void setTicketsList() {
-        /*RecyclerView mRecyclerView = (RecyclerView)getView().findViewById(R.id.tickets_recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(new RecyclerViewCardsAdapter(getActivity(),createMockList()));*/
-
+    public void setTicketsPager() {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
         TabLayout tabLayout = (TabLayout) getView().findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
@@ -112,7 +106,24 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
     }
 
     @Override
-    public void onTicketsDataLoaded(Object movieDataObj) { }
+    public void getTicketsDataFromLocal() {
+
+    }
+
+    @Override
+    public void getTicketsDataFromParseInBackground() {
+
+    }
+
+    @Override
+    public void onTicketsDataLoaded(List<Ticket> ticketsList) {
+
+    }
+
+    @Override
+    public void onEmptyScreenVisibilityChanged(boolean visible) {
+
+    }
 
     @Override
     public void onLoadVisibilityChanged(boolean visible) { }

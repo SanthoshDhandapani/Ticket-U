@@ -11,6 +11,9 @@
 
     <string name="assets_fonts_folder">fonts/</string>
 
+    <string name="empty_screen_msg">Loading Tickets</string>
+    <string name="no_tickets_found_msg">Oops! Sorry, no tickets found</string>
+
       <string name="typeface_not_found">Typeface %s not found, or could not be loaded.
         Showing default typeface.
     </string>
