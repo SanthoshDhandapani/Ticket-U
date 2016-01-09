@@ -14,7 +14,7 @@ public class HomePresenterImpl extends BasePresenter implements HomePresenter {
     private void loadHomeScreenViews() {
         view.setToolBarWithToggle();
         view.setFab();
-        view.setTicketsList();
+        view.setTicketsPager();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class HomePresenterImpl extends BasePresenter implements HomePresenter {
 
         void setFab();
 
-        void setTicketsList();
+        void setTicketsPager();
 
         void showLoading();
 
