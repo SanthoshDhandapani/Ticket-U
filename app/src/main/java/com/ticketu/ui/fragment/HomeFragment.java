@@ -3,7 +3,6 @@ package com.ticketu.ui.fragment;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -14,6 +13,7 @@ import android.view.View;
 import com.ticketu.R;
 import com.ticketu.model.Ticket;
 import com.ticketu.ui.activity.BaseActivity;
+import com.ticketu.ui.activity.HomeActivity;
 import com.ticketu.ui.adapters.SectionsPagerAdapter;
 import com.ticketu.ui.presenter.BasePresenter;
 import com.ticketu.ui.presenter.home.HomePresenterImpl;
@@ -64,8 +64,8 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                ((HomeActivity)getActivity()).replaceFragments(new PostFragment());
             }
         });
         Drawable drawable = PrintFontIconDrawable.getInstance(getActivity()).getDrawableFontIcon(R.string.ic_add, android.R.color.white, R.dimen._30sdp);
