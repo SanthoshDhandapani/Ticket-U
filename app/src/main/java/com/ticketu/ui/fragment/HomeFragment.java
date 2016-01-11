@@ -13,15 +13,12 @@ import android.view.View;
 import com.ticketu.R;
 import com.ticketu.model.Ticket;
 import com.ticketu.ui.activity.BaseActivity;
-import com.ticketu.ui.activity.HomeActivity;
 import com.ticketu.ui.adapters.SectionsPagerAdapter;
 import com.ticketu.ui.presenter.BasePresenter;
 import com.ticketu.ui.presenter.home.HomePresenterImpl;
 import com.ticketu.ui.utils.PrintFontIconDrawable;
-import com.ticketu.ui.viewmodel.CardViewBean;
 import com.ticketu.ui.viewmodel.TicketViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +27,6 @@ import java.util.List;
 public class HomeFragment extends BaseFragment implements HomePresenterImpl.View, TicketViewModel.Listener {
 
     HomePresenterImpl  homePresenter;
-    private static final String MOCK_URL = "http://lorempixel.com/800/400/nightlife/";
 
     @Override
     protected int getFragmentLayout() {
@@ -64,8 +60,7 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ((HomeActivity)getActivity()).replaceFragments(new PostFragment());
+                ((BaseActivity)getActivity()).replaceFragment(new PostFragment());
             }
         });
         Drawable drawable = PrintFontIconDrawable.getInstance(getActivity()).getDrawableFontIcon(R.string.ic_add, android.R.color.white, R.dimen._30sdp);
@@ -79,14 +74,6 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
         ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-    }
-
-    private List<CardViewBean> createMockList() {
-        List<CardViewBean> listCard = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            listCard.add(new CardViewBean(MOCK_URL + i));
-        }
-        return listCard;
     }
 
     @Override
