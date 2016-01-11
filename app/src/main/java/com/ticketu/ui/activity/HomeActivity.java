@@ -3,7 +3,6 @@ package com.ticketu.ui.activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -11,12 +10,11 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.ticketu.R;
-import com.ticketu.interfaces.listeners.SwitchFragment;
 import com.ticketu.ui.fragment.HomeFragment;
 import com.ticketu.ui.utils.PrintFontIconDrawable;
 
 public class HomeActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SwitchFragment{
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreateContentView(Bundle savedInstanceState) {
@@ -76,8 +74,4 @@ public class HomeActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void replaceFragments(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, Fragment.class.getName()).addToBackStack(null).commit();
-    }
 }

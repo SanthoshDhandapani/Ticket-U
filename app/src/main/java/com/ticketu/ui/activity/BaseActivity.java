@@ -1,9 +1,12 @@
 package com.ticketu.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
+import com.ticketu.R;
 import com.ticketu.interfaces.listeners.OnBackPressedListener;
+import com.ticketu.interfaces.listeners.SwitchFragment;
 
 /**
  * Base activity created to be extended by every activity in this application. This class provides
@@ -11,7 +14,7 @@ import com.ticketu.interfaces.listeners.OnBackPressedListener;
  * common to every activity.
  *
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements SwitchFragment {
 
   public OnBackPressedListener onBackPressedListener;
 
@@ -30,5 +33,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     if(proceedActivityBackAction) {
       super.onBackPressed();
     }
+  }
+
+  @Override
+  public void replaceFragment(Fragment fragment) {
+    getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, Fragment.class.getName()).commit();
   }
 }

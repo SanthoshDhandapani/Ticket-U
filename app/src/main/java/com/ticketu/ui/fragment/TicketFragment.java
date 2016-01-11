@@ -131,8 +131,11 @@ public class TicketFragment extends BaseFragment implements TicketViewModel.List
                 handler = null;
                 runnable = null;
             }
-            View emptyScreenGroup = getView().findViewById(R.id.empty_screen_group);
-            if(null!=emptyScreenGroup)emptyScreenGroup.setVisibility(View.GONE);
+
+            if(null!=getView()) {
+                View emptyScreenGroup = getView().findViewById(R.id.empty_screen_group);
+                if (null != emptyScreenGroup) emptyScreenGroup.setVisibility(View.GONE);
+            }
         }
     }
 
