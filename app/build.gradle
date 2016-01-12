@@ -31,4 +31,5 @@ dependencies {
     compile 'com.github.johnkil.print:print:1.2.3'
     compile 'com.intuit.sdp:sdp-android:1.0.2'
     compile 'com.android.support:support-v4:23.1.1'
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
 }

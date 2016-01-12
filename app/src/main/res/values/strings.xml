@@ -19,9 +19,9 @@
     </string>
 
 
-    <string name="regular_text_typeface">open_sans_regular.ttf</string>
-    <string name="small_text_typeface">raleway_light.ttf</string>
-    <string name="large_text_typeface">open_sans_semibold.ttf</string>
+    <string name="regular_text_typeface">fonts/open_sans_regular.ttf</string>
+    <string name="small_text_typeface">fonts/raleway_light.ttf</string>
+    <string name="large_text_typeface">fonts/open_sans_semibold.ttf</string>
 
     <string-array name="drawer_list_icons">
         <item>@string/ic_card_giftcard</item>

@@ -1,5 +1,6 @@
 package com.ticketu.ui.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.ticketu.R;
 import com.ticketu.interfaces.listeners.OnBackPressedListener;
 import com.ticketu.interfaces.listeners.SwitchFragment;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Base activity created to be extended by every activity in this application. This class provides
@@ -33,6 +36,11 @@ public abstract class BaseActivity extends AppCompatActivity implements SwitchFr
     if(proceedActivityBackAction) {
       super.onBackPressed();
     }
+  }
+
+  @Override
+  protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
   }
 
   @Override
