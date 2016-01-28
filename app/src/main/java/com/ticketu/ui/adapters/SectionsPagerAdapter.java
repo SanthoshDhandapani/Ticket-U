@@ -12,8 +12,11 @@ import com.ticketu.ui.fragment.TicketFragment;
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        String[] pageTitles;
+
+        public SectionsPagerAdapter(FragmentManager fm, String[] pageTitles) {
             super(fm);
+            this.pageTitles = pageTitles;
         }
 
         @Override
@@ -25,18 +28,11 @@ import com.ticketu.ui.fragment.TicketFragment;
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            return pageTitles.length;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Popular";
-                case 1:
-                    return "Today";
-            }
-            return null;
+            return pageTitles[position];
         }
     }

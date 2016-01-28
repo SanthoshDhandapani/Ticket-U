@@ -14,11 +14,12 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.ticketu.R;
 import com.ticketu.model.Ticket;
-import com.ticketu.ui.adapters.RecyclerViewCardsAdapter;
+import com.ticketu.ui.adapters.TicketsAdapter;
 import com.ticketu.ui.presenter.BasePresenter;
 import com.ticketu.ui.presenter.ticket.TicketPresenterImpl;
 import com.ticketu.ui.viewmodel.TicketViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -68,10 +69,10 @@ public class TicketFragment extends BaseFragment implements TicketViewModel.List
         query.fromLocalDatastore().findInBackground(new FindCallback<Ticket>() {
             @Override
             public void done(List<Ticket> objects, ParseException e) {
-                if(null!=objects && objects.size()>0) {
+                objects = (null==objects)?new ArrayList<Ticket>():objects;
+                if(objects.size()>0)
                     onEmptyScreenVisibilityChanged(true);
-                    onTicketsDataLoaded(objects);
-                }
+                onTicketsDataLoaded(objects);
                 getTicketsDataFromParseInBackground();
             }
         });
@@ -80,6 +81,7 @@ public class TicketFragment extends BaseFragment implements TicketViewModel.List
     @Override
     public void getTicketsDataFromParseInBackground() {
         ParseQuery<Ticket> query = ParseQuery.getQuery("Ticket");
+        query.addAscendingOrder("name");
         // Query for the latest objects from Parse.
         query.findInBackground(new FindCallback<Ticket>() {
             public void done(final List<Ticket> ticketsList, ParseException e) {
@@ -99,6 +101,8 @@ public class TicketFragment extends BaseFragment implements TicketViewModel.List
                         // Add the latest results for this query to the cache.
                         ParseObject.pinAllInBackground(Ticket.class.getName(), ticketsList);
                         onEmptyScreenVisibilityChanged(true);
+                        updateTicketsList(ticketsList);
+
                     }
                 });
             }
@@ -157,11 +161,20 @@ public class TicketFragment extends BaseFragment implements TicketViewModel.List
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(new RecyclerViewCardsAdapter(getActivity(), ticketList));
+        mRecyclerView.setAdapter(new TicketsAdapter(ticketList));
     }
 
     @Override
     public void setEmptyScreen(boolean visible) {
         onEmptyScreenVisibilityChanged(visible);
+    }
+
+    @Override
+    public void updateTicketsList(List<Ticket> ticketList) {
+        if(null!=getView()) {
+           RecyclerView ticketsRecyler = (RecyclerView) getView().findViewById(R.id.tickets_recycler_view);
+           TicketsAdapter ticketsAdapter =(TicketsAdapter)ticketsRecyler.getAdapter();
+           ticketsAdapter.updateTicketsList(ticketList);
+        }
     }
 }

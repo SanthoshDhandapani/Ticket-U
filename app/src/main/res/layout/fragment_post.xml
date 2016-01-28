@@ -3,7 +3,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
@@ -23,8 +24,7 @@
         <ScrollView
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:context="com.ticketu.ui.fragment.PostFragment">
 
@@ -32,66 +32,65 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/_10sdp">
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/fNameLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/TextInputLayout">
 
-                <EditText
+                <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Name" />
+                    android:hint="Name"
+                    app:theme="@style/AppCompatEditTextStyle"/>
             </android.support.design.widget.TextInputLayout>
 
-            <AutoCompleteTextView
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/theatreName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Theatre name" />
+                style="@style/TextInputLayout"
+                android:hint="Theatre name"
+                app:theme="@style/AppCompatEditTextStyle"/>
 
-            <android.support.v7.widget.AppCompatSpinner
+         <!--   <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/cities"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" />-->
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/TextInputLayout">
 
                 <EditText
                     android:id="@+id/edtScreenName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Screen Name" />
+                    android:hint="Screen Name"
+                    app:theme="@style/AppCompatEditTextStyle"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/TextInputLayout">
 
                 <EditText
                     android:id="@+id/edtTicketRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ticket Row" />
+                    android:hint="Ticket Row"
+                    app:theme="@style/AppCompatEditTextStyle"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                style="@style/TextInputLayout">
 
                 <EditText
                     android:id="@+id/edtTicketNumbers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="No. of tickets" />
+                    android:hint="No. of tickets"
+                    app:theme="@style/AppCompatEditTextStyle"/>
             </android.support.design.widget.TextInputLayout>
 
             <TextView
@@ -124,14 +123,14 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/edtPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Price" />
+                    android:hint="Price"
+                    app:theme="@style/AppCompatEditTextStyle"/>
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout

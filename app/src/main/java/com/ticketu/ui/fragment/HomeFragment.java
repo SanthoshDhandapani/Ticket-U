@@ -60,7 +60,7 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((BaseActivity)getActivity()).replaceFragment(new PostFragment());
+                ((BaseActivity)getActivity()).addFragment(new PostFragment());
             }
         });
         Drawable drawable = PrintFontIconDrawable.getInstance(getActivity()).getDrawableFontIcon(R.string.ic_add, android.R.color.white, R.dimen._30sdp);
@@ -69,7 +69,7 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
 
     @Override
     public void setTicketsPager() {
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager(), getResources().getStringArray(R.array.tab_titles));
         TabLayout tabLayout = (TabLayout) getView().findViewById(R.id.tabs);
         ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
         viewPager.setAdapter(sectionsPagerAdapter);
