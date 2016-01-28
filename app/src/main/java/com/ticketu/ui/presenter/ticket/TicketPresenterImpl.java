@@ -44,5 +44,6 @@ public class TicketPresenterImpl extends BasePresenter implements TicketPresente
     public interface View {
         void setTicketsListRecycler(List<Ticket> ticketList);
         void setEmptyScreen(boolean visible);
+        void updateTicketsList(List<Ticket> ticketList);
     }
 }

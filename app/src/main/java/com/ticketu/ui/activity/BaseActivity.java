@@ -44,7 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwitchFr
   }
 
   @Override
-  public void replaceFragment(Fragment fragment) {
+  public void addFragment(Fragment fragment) {
     getSupportFragmentManager().beginTransaction().add(R.id.container, fragment, Fragment.class.getName()).commit();
   }
 }

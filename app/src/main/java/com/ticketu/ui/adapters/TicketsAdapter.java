@@ -1,6 +1,5 @@
 package com.ticketu.ui.adapters;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -16,21 +15,24 @@ import com.ticketu.model.Ticket;
 import java.util.Date;
 import java.util.List;
 
-public class RecyclerViewCardsAdapter extends RecyclerView.Adapter<RecyclerViewCardsAdapter.ViewHolder> {
-    private final List<Ticket> mListItemsCard;
-    private Context mContext;
+public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.ViewHolder> {
+    private List<Ticket> mListItemsCard;
     DateFormat dateLabelFormat;
     String dateLabelStringFormat = "EEE,  MMM yy";
 
-    public RecyclerViewCardsAdapter(Context context, List<Ticket> listItemsCard) {
+    public TicketsAdapter(List<Ticket> listItemsCard) {
         this.mListItemsCard = listItemsCard;
-        this.mContext = context;
         this.dateLabelFormat = new DateFormat();
+    }
+
+    public void updateTicketsList(List<Ticket> ticketList) {
+        mListItemsCard = ticketList;
+        notifyDataSetChanged();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_recycler_view_comp, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.ticket_card_view, parent, false));
     }
 
     @Override
