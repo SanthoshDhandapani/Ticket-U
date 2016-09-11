@@ -1,101 +1,102 @@
 package com.ticketu.model;
 
-import com.parse.ParseClassName;
-import com.parse.ParseObject;
-
 import java.util.Date;
 
-@ParseClassName("Ticket")
-public class Ticket extends ParseObject {
+public class Ticket {
+
+    private String name, cityName, category, price, additionalMsg, pickupType, screenName,
+                   venueName, ticketRows, ticketGenre, imageURL;
+    private Date showTimeAndDate;
+    private int ticketsCount;
 
     public String getName() {
-        return getString("name");
+        return name;
     }
     public void setName(String value) {
-        put("name", value);
+        this.name = value;
     }
 
     public String getCityName() {
-        return getString("cityName");
+        return cityName;
     }
     public void setCityName(String value) {
-        put("cityName", value);
+        cityName = value;
     }
 
     public String getCategory() {
-        return getString("category");
+        return category;
     }
     public void setCategory(String value) {
-        put("category", value);
+        category = value;
     }
 
     public String getPrice() {
-        return getString("price");
+        return price;
     }
     public void setPrice(String value) {
-        put("price", value);
+        price = value;
     }
 
     public String getAdditionalMsg() {
-        return getString("additionalMsg");
+        return additionalMsg;
     }
     public void setAdditionalMsg(String value) {
-        put("additionalMsg", value);
+        additionalMsg = value;
     }
 
     public String getPickupType() {
-        return getString("pickupType");
+        return pickupType;
     }
     public void setPickupType(String value) {
-        put("pickupType", value);
+        pickupType = value;
     }
 
     public String getScreenName() {
-        return getString("screenName");
+        return screenName;
     }
     public void setScreenName(String value) {
-        put("screenName", value);
+        screenName = value;
     }
 
     public Date getShowDateTime() {
-        return getDate("showTimeAndDate");
+        return showTimeAndDate;
     }
     public void setShowDateTime(Date value) {
-        put("showTimeAndDate", value);
+        showTimeAndDate = value;
     }
 
     public String getVenueName() {
-        return getString("venueName");
+        return venueName;
     }
     public void setVenueName(String value) {
-        put("venueName", value);
+        venueName = value;
     }
 
     public String getTicketRows() {
-        return getString("ticketRows");
+        return ticketRows;
     }
     public void setTicketRows(String value) {
-        put("ticketRows", value);
+        ticketRows = value;
     }
 
     public int getTicketsCount() {
-        return getInt("ticketsCount");
+        return ticketsCount;
     }
     public void setTicketsCount(int value) {
-        put("ticketsCount", value);
+        ticketsCount = value;
     }
 
     public String getTicketsGenre() {
-        return getString("ticketGenre");
+        return ticketGenre;
     }
     public void setTicketsGenre(String value) {
-        put("ticketGenre", value);
+        ticketGenre = value;
     }
 
     public String getImageURL() {
-        return getString("imageURL");
+        return imageURL;
     }
     public void setTicketImageURL(String value) {
-        put("imageURL", value);
+        imageURL = value;
     }
 }
