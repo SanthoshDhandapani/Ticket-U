@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
+import com.backendless.Backendless;
+import com.backendless.BackendlessCollection;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.BackendlessDataQuery;
+import com.backendless.persistence.QueryOptions;
 import com.github.johnkil.print.PrintView;
-import com.parse.DeleteCallback;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.ticketu.R;
+import com.ticketu.data.PaperNoDbController;
 import com.ticketu.model.Ticket;
 import com.ticketu.ui.adapters.TicketsAdapter;
 import com.ticketu.ui.presenter.BasePresenter;
@@ -22,6 +25,8 @@ import com.ticketu.ui.viewmodel.TicketViewModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import io.paperdb.Paper;
 
 /**
  * Created by santhoshd on 08-01-2016.
@@ -65,46 +70,35 @@ public class TicketFragment extends BaseFragment implements TicketViewModel.List
     @Override
     public void getTicketsDataFromLocal() {
         // Fetch from local
-        ParseQuery<Ticket> query = ParseQuery.getQuery("Ticket");
-        query.fromLocalDatastore().findInBackground(new FindCallback<Ticket>() {
-            @Override
-            public void done(List<Ticket> objects, ParseException e) {
-                objects = (null==objects)?new ArrayList<Ticket>():objects;
-                if(objects.size()>0)
-                    onEmptyScreenVisibilityChanged(true);
-                onTicketsDataLoaded(objects);
-                getTicketsDataFromParseInBackground();
-            }
-        });
+        List<Ticket> ticketsList = PaperNoDbController.getInstance(getContext()).getListFromJsonArray(Ticket.class.getName()+" list", Ticket[].class);
+        ticketsList = (null==ticketsList)?new ArrayList<Ticket>():ticketsList;
+        if(ticketsList.size()>0)
+            onEmptyScreenVisibilityChanged(true);
+        onTicketsDataLoaded(ticketsList);
+        getTicketsDataFromBackendLess();
     }
 
     @Override
-    public void getTicketsDataFromParseInBackground() {
-        ParseQuery<Ticket> query = ParseQuery.getQuery("Ticket");
-        query.addAscendingOrder("name");
-        // Query for the latest objects from Parse.
-        query.findInBackground(new FindCallback<Ticket>() {
-            public void done(final List<Ticket> ticketsList, ParseException e) {
-                if (e != null) {
-                    // There was an error or the network wasn't available.
-                    return;
-                }
+    public void getTicketsDataFromBackendLess() {
 
-                // Release any objects previously pinned for this query.
-                ParseObject.unpinAllInBackground(Ticket.class.getName(), ticketsList, new DeleteCallback() {
-                    public void done(ParseException e) {
-                        if (e != null) {
-                            // There was some error.
-                            return;
-                        }
+        QueryOptions queryOptions = new QueryOptions();
+        List<String> sortBy = new ArrayList<>();
+        sortBy.add( "name" );
+        queryOptions.setSortBy( sortBy );
 
-                        // Add the latest results for this query to the cache.
-                        ParseObject.pinAllInBackground(Ticket.class.getName(), ticketsList);
-                        onEmptyScreenVisibilityChanged(true);
-                        updateTicketsList(ticketsList);
+        BackendlessDataQuery dataQuery = new BackendlessDataQuery();
+        dataQuery.setQueryOptions( queryOptions );
+        Backendless.Data.of( Ticket.class ).find(dataQuery, new AsyncCallback<BackendlessCollection<Ticket>>() {
+            @Override
+            public void handleResponse(BackendlessCollection<Ticket> response) {
+                PaperNoDbController.getInstance(getContext()).putJSONList(Ticket.class.getName()+" list", response.getData());
+                onEmptyScreenVisibilityChanged(true);
+                updateTicketsList(response.getData());
+            }
 
-                    }
-                });
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Log.e("Tickets Retrieve", fault.toString());
             }
         });
     }

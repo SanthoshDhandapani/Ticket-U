@@ -40,7 +40,7 @@ public class TicketViewModel {
 
     void getTicketsDataFromLocal();
 
-    void getTicketsDataFromParseInBackground();
+    void getTicketsDataFromBackendLess();
 
     void onTicketsDataLoaded(List<Ticket> ticketsList);
 

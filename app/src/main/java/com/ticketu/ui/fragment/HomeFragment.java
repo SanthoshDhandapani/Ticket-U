@@ -98,7 +98,7 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
     }
 
     @Override
-    public void getTicketsDataFromParseInBackground() {
+    public void getTicketsDataFromBackendLess() {
 
     }
 
