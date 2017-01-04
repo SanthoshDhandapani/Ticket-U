@@ -1,6 +1,7 @@
 package com.ticketu;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.parse.Parse;
 
@@ -18,6 +19,7 @@ public class TicketU extends Application {
     private void initialize() {
         Parse.enableLocalDatastore(this);
         Parse.initialize(this);
+        Log.i("Test","Test 2");
     }
 
 }
