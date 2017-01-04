@@ -13,6 +13,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * Created by hp-user on 12/28/2015.
  */
 public class TicketU extends Application {
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,6 +32,6 @@ public class TicketU extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
-        Log.i("Test 2","Test 3");
+        Log.i("Test","Test 2");
     }
 }
