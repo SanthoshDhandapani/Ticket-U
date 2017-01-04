@@ -31,5 +31,6 @@ public class TicketU extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
+        Log.i("Test 2","Test 3");
     }
 }
