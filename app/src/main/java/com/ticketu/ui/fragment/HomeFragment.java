@@ -1,23 +1,30 @@
 package com.ticketu.ui.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.ticketu.R;
+import com.ticketu.model.Ticket;
 import com.ticketu.ui.activity.BaseActivity;
+import com.ticketu.ui.adapters.SectionsPagerAdapter;
 import com.ticketu.ui.presenter.BasePresenter;
 import com.ticketu.ui.presenter.home.HomePresenterImpl;
-import com.ticketu.ui.viewmodel.HomeViewModel;
+import com.ticketu.ui.utils.PrintFontIconDrawable;
+import com.ticketu.ui.viewmodel.TicketViewModel;
+
+import java.util.List;
 
 /**
  * Created by santhoshd on 30-12-2015.
  */
-public class HomeFragment extends BaseFragment implements HomePresenterImpl.View, HomeViewModel.Listener {
+public class HomeFragment extends BaseFragment implements HomePresenterImpl.View, TicketViewModel.Listener {
 
     HomePresenterImpl  homePresenter;
 
@@ -53,10 +60,20 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                ((BaseActivity)getActivity()).addFragment(new PostFragment());
             }
         });
+        Drawable drawable = PrintFontIconDrawable.getInstance(getActivity()).getDrawableFontIcon(R.string.ic_add, android.R.color.white, R.dimen._30sdp);
+        fab.setImageDrawable(drawable);
+    }
+
+    @Override
+    public void setTicketsPager() {
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager(), getResources().getStringArray(R.array.tab_titles));
+        TabLayout tabLayout = (TabLayout) getView().findViewById(R.id.tabs);
+        ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -76,7 +93,24 @@ public class HomeFragment extends BaseFragment implements HomePresenterImpl.View
     }
 
     @Override
-    public void onTicketsDataLoaded(Object movieDataObj) { }
+    public void getTicketsDataFromLocal() {
+
+    }
+
+    @Override
+    public void getTicketsDataFromBackendLess() {
+
+    }
+
+    @Override
+    public void onTicketsDataLoaded(List<Ticket> ticketsList) {
+
+    }
+
+    @Override
+    public void onEmptyScreenVisibilityChanged(boolean visible) {
+
+    }
 
     @Override
     public void onLoadVisibilityChanged(boolean visible) { }

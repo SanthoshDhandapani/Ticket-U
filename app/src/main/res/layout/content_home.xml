@@ -2,13 +2,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/app_bar_home"
     tools:context=".ui.activity.HomeActivity">
 
-    <TextView android:text="Hello World!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <!-- android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/tickets_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:visibility="gone"/>
+
+    <RelativeLayout
+        android:id="@+id/empty_screen_group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/empty_tickets_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/empty_screen_msg"
+            android:textColor="@color/empty_msg_grey_font"
+            android:gravity="center"/>
+
+        <com.github.johnkil.print.PrintView
+            android:id="@+id/empty_screen_icon_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconText="@string/ic_local_activity"
+            app:iconColor="@color/nav_list_icons"
+            app:iconSize="@dimen/_50sdp"
+            android:layout_above="@id/empty_tickets_msg" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

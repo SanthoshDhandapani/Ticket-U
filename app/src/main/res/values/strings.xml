@@ -1,11 +1,44 @@
 <resources>
     <string name="app_name">Ticket U</string>
 
-    <string name="parse_app_id">PDHgsiMSvgfu8g2eo8pCmdNZBB3CW8MGyOPc84r5</string>
-    <string name="parse_client_key">NmoxAHN0yaim4Gl6MwwDG6fniTcZhI7MqN1j6KP3</string>
-
+    <string name="backendLess_app_id">4F8B67CF-D73D-5391-FF40-C3F4252DE200</string>
+    <string name="backendLess_secret_key">DCA17A3F-4230-5CE0-FF84-B980935ABC00</string>
+    <string name="backendLess_app_version">v1</string>
+    <string name="backendLess_version_no">v1</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="assets_fonts_folder">fonts/</string>
+
+    <string name="empty_screen_msg">Loading Tickets</string>
+    <string name="no_tickets_found_msg">Oops! Sorry, no tickets found</string>
+
+      <string name="typeface_not_found">Typeface %s not found, or could not be loaded.
+        Showing default typeface.
+    </string>
+
+
+    <string name="regular_text_typeface">fonts/open_sans_regular.ttf</string>
+    <string name="small_text_typeface">fonts/raleway_light.ttf</string>
+    <string name="large_text_typeface">fonts/open_sans_semibold.ttf</string>
+
+    <string-array name="drawer_list_icons">
+        <item>@string/ic_card_giftcard</item>
+        <item>@string/ic_perm_media</item>
+        <item>@string/ic_chat</item>
+        <item>@string/ic_favorite_border</item>
+        <item>@string/ic_tune</item>
+        <item>@string/ic_share</item>
+    </string-array>
+
+    <string-array name="tab_titles">
+        <item>Popular</item>
+        <item>Today</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
